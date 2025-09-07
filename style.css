@@ -1,0 +1,98 @@
+/* Reset dasar */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #f0f8f4; /* hijau lembut */
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #a8d5ba; /* hijau pastel */
+  color: #2e8b57;
+  padding: 20px;
+  text-align: center;
+  border-bottom: 2px solid #2e8b57;
+}
+
+header h1 {
+  font-size: 2em;
+  margin-bottom: 5px;
+}
+
+header p {
+  font-size: 1em;
+  font-style: italic;
+}
+
+/* Navigasi */
+nav {
+  background-color: #e0efe6;
+  padding: 10px;
+  text-align: center;
+}
+
+nav a {
+  margin: 0 12px;
+  text-decoration: none;
+  color: #2e8b57;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav a:hover {
+  color: #145c3a;
+}
+
+/* Konten utama */
+main {
+  padding: 20px;
+}
+
+/* Kartu konten */
+.card {
+  background-color: white;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+footer {
+  background-color: #a8d5ba;
+  color: #2e8b57;
+  text-align: center;
+  padding: 15px;
+  font-size: 0.9em;
+  border-top: 2px solid #2e8b57;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  nav a {
+    display: block;
+    margin: 8px 0;
+  }
+
+  .card {
+    padding: 15px;
+  }
+}
+
+.scroll-box {
+  max-height: 300px;
+  overflow-y: auto;
+  padding-right: 10px;
+}
+
+.scroll-box ol {
+  padding-left: 20px;
+}
