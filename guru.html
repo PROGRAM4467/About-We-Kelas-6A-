@@ -63,31 +63,7 @@
       <h2>Input Nilai Siswa</h2>
       <form id="nilaiForm">
         <select id="namaSiswa" required>
-                <li>Adit Setio Nurohman</li>
-        <li>Adrian Rendrajati</li>
-        <li>Aisha Azka Kamila</li>
-        <li>Anugrah Aufar Pratama</li>
-        <li>Ardi Riki Widagdo</li>
-        <li>Athallah Abidzar Al Khalifi</li>
-        <li>Bilqis Zakira Jati</li>
-        <li>Danendra Neema Ibrahim</li>
-        <li>Deancko Putra Kohila</li>
-        <li>Debby Haryono</li>
-        <li>Dukha Rahardian Kamil</li>
-        <li>Fabian Ahza Alvaro</li>
-        <li>Fariz Naufal Akbar</li>
-        <li>Fitri Syafira Adzra</li>
-        <li>Kenzie Ahzadanish El Zikri</li>
-        <li>Kiara Tabita Salsabila</li>
-        <li>Malika Zelia Syafira Subhan</li>
-        <li>Muhhammad Fadil Habibburahmman</li>
-        <li>Raihan Maulana Nur Rizqi</li>
-        <li>Revan Eza Saputra</li>
-        <li>Rizqi Zidan Alfarizi</li>
-        <li>Ulya Azka Ramadhani</li>
-        <li>Zahwa Anindya Ramadhani</li>
-        <li>Excell Kanza Talita Zahran</li>
-
+          <option value="">-- Pilih Siswa --</option>
         </select>
         <input type="number" id="nilai" placeholder="Masukkan Nilai" required>
         <button type="submit">Simpan Nilai</button>
@@ -131,7 +107,42 @@
   </footer>
 
   <script>
-    // ====== Data Nilai ======
+    // === Daftar siswa dari murid.html (versi array) ===
+    const siswa = [
+      "Adit Setio Nurohman",
+      "Adrian Rendrajati",
+      "Aisha Azka Kamila",
+      "Anugrah Aufar Pratama",
+      "Ardi Riki Widagdo",
+      "Athallah Abidzar Al Khalifi",
+      "Bilqis Zakira Jati",
+      "Danendra Neema Ibrahim",
+      "Deancko Putra Kohila",
+      "Debby Haryono",
+      "Dukha Rahardian Kamil",
+      "Fabian Ahza Alvaro",
+      "Fariz Naufal Akbar",
+      "Fitri Syafira Adzra",
+      "Kenzie Ahzadanish El Zikri",
+      "Kiara Tabita Salsabila",
+      "Malika Zelia Syafira Subhan",
+      "Muhhammad Fadil Habibburahmman",
+      "Raihan Maulana Nur Rizqi",
+      "Revan Eza Saputra",
+      "Rizqi Zidan Alfarizi",
+      "Ulya Azka Ramadhani",
+      "Zahwa Anindya Ramadhani",
+      "Excell Kanza Talita Zahran"
+    ];
+
+    const select = document.getElementById("namaSiswa");
+    siswa.forEach(nama => {
+      const opt = document.createElement("option");
+      opt.textContent = nama;
+      select.appendChild(opt);
+    });
+
+    // === Data Nilai ===
     const nilaiForm = document.getElementById("nilaiForm");
     const tabelNilai = document.querySelector("#tabelNilai tbody");
     const ctx = document.getElementById("grafikNilai").getContext("2d");
@@ -176,7 +187,7 @@
       chart.update();
     }
 
-    // ====== Data Jadwal ======
+    // === Data Jadwal ===
     const jadwalForm = document.getElementById("jadwalForm");
     const tabelJadwal = document.querySelector("#tabelJadwal tbody");
     let dataJadwal = [];
