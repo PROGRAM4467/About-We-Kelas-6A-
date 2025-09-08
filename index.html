@@ -2,41 +2,87 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Beranda - Kelas 6A SDN 2 Dukuhwaluh</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Kelas 6A</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* Tambahan styling untuk login */
+    .login-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .login-card {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-width: 350px;
+      width: 100%;
+      text-align: center;
+    }
+    .login-card h2 {
+      margin-bottom: 20px;
+      color: #2e8b57;
+    }
+    .login-card input {
+      width: 100%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 1em;
+    }
+    .login-card button {
+      width: 100%;
+      padding: 12px;
+      background: #2e8b57;
+      color: white;
+      font-size: 1em;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .login-card button:hover {
+      background: #145c3a;
+    }
+    .error {
+      color: red;
+      font-size: 0.9em;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>Selamat Datang di Website Kelas 6A</h1>
-    <p>SD Negeri 2 Dukuhwaluh</p>
-  </header>
+  <div class="login-container">
+    <div class="login-card">
+      <h2>Login Kelas 6A</h2>
+      <form id="loginForm">
+        <input type="text" id="username" placeholder="Nama" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit">Masuk</button>
+        <p id="errorMsg" class="error"></p>
+      </form>
+    </div>
+  </div>
 
-  <nav>
-    <a href="index.html">Beranda</a>
-    <a href="profil-guru.html">Profil Guru</a>
-    <a href="daftar-siswa.html">Daftar Siswa</a>
-    <a href="jadwal-pelajaran.html">Jadwal Pelajaran</a>
-  </nav>
+  <script>
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      const username = document.getElementById("username").value.trim().toUpperCase();
+      const password = document.getElementById("password").value.trim();
 
-  <main>
-    <section class="card">
-      <h2>Tentang Kelas 6A</h2>
-      <p>Kelas 6A adalah kelas yang penuh semangat, kreatif, dan kompak. Di bawah bimbingan Ibu Wiwin Kurniawati, siswa-siswi 6A aktif dalam berbagai kegiatan sekolah dan selalu berusaha memberikan yang terbaik.</p>
-    </section>
-
-    <section class="card">
-      <h2>Tujuan Website</h2>
-      <ul>
-        <li>Memberikan informasi tentang kegiatan kelas</li>
-        <li>Menampilkan profil guru dan siswa</li>
-        <li>Menyediakan jadwal pelajaran terbaru</li>
-        <li>Menjadi media komunikasi antara guru, siswa, dan orang tua</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer>
-    <p>&copy; 2025 Kelas 6A - SD Negeri 2 Dukuhwaluh</p>
-  </footer>
+      if (password === "991" && (username === "WIWIN" || username === "KURNIAWATI")) {
+        // login guru
+        window.location.href = "guru.html";
+      } else {
+        // login murid
+        window.location.href = "murid.html";
+      }
+    });
+  </script>
 </body>
 </html>

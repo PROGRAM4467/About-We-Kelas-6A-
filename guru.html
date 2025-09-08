@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guru - Kelas 6A</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    .form-section {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 800px;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    }
+    .form-section h2 {
+      margin-bottom: 15px;
+      color: #2e8b57;
+    }
+    .form-section input, .form-section select, .form-section button {
+      padding: 10px;
+      margin: 5px 0;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      width: 100%;
+    }
+    .form-section button {
+      background: #2e8b57;
+      color: white;
+      border: none;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .form-section button:hover {
+      background: #145c3a;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    th {
+      background: #a8d5ba;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Panel Guru - Kelas 6A</h1>
+    <p>Selamat datang Bu Wiwin / Bu Kurniawati 🎓</p>
+  </header>
+
+  <main>
+    <!-- Input Nilai -->
+    <section class="form-section">
+      <h2>Input Nilai Siswa</h2>
+      <form id="nilaiForm">
+        <select id="namaSiswa" required>
+                <li>Adit Setio Nurohman</li>
+        <li>Adrian Rendrajati</li>
+        <li>Aisha Azka Kamila</li>
+        <li>Anugrah Aufar Pratama</li>
+        <li>Ardi Riki Widagdo</li>
+        <li>Athallah Abidzar Al Khalifi</li>
+        <li>Bilqis Zakira Jati</li>
+        <li>Danendra Neema Ibrahim</li>
+        <li>Deancko Putra Kohila</li>
+        <li>Debby Haryono</li>
+        <li>Dukha Rahardian Kamil</li>
+        <li>Fabian Ahza Alvaro</li>
+        <li>Fariz Naufal Akbar</li>
+        <li>Fitri Syafira Adzra</li>
+        <li>Kenzie Ahzadanish El Zikri</li>
+        <li>Kiara Tabita Salsabila</li>
+        <li>Malika Zelia Syafira Subhan</li>
+        <li>Muhhammad Fadil Habibburahmman</li>
+        <li>Raihan Maulana Nur Rizqi</li>
+        <li>Revan Eza Saputra</li>
+        <li>Rizqi Zidan Alfarizi</li>
+        <li>Ulya Azka Ramadhani</li>
+        <li>Zahwa Anindya Ramadhani</li>
+        <li>Excell Kanza Talita Zahran</li>
+
+        </select>
+        <input type="number" id="nilai" placeholder="Masukkan Nilai" required>
+        <button type="submit">Simpan Nilai</button>
+      </form>
+      <table id="tabelNilai">
+        <thead>
+          <tr>
+            <th>Nama</th>
+            <th>Nilai</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+      <canvas id="grafikNilai" height="120"></canvas>
+    </section>
+
+    <!-- Input Jadwal -->
+    <section class="form-section">
+      <h2>Input Jadwal Pelajaran</h2>
+      <form id="jadwalForm">
+        <input type="text" id="hari" placeholder="Hari (contoh: Senin)" required>
+        <input type="text" id="jam" placeholder="Jam (contoh: 07.00 - 08.30)" required>
+        <input type="text" id="mapel" placeholder="Mata Pelajaran" required>
+        <button type="submit">Simpan Jadwal</button>
+      </form>
+      <table id="tabelJadwal">
+        <thead>
+          <tr>
+            <th>Hari</th>
+            <th>Jam</th>
+            <th>Mata Pelajaran</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Kelas 6A SDN 2 Dukuhwaluh</p>
+  </footer>
+
+  <script>
+    // ====== Data Nilai ======
+    const nilaiForm = document.getElementById("nilaiForm");
+    const tabelNilai = document.querySelector("#tabelNilai tbody");
+    const ctx = document.getElementById("grafikNilai").getContext("2d");
+    let dataNilai = [];
+
+    const chart = new Chart(ctx, {
+      type: "bar",
+      data: {
+        labels: [],
+        datasets: [{
+          label: "Nilai Siswa",
+          data: [],
+          backgroundColor: "#2e8b57"
+        }]
+      },
+      options: { responsive: true }
+    });
+
+    nilaiForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const nama = document.getElementById("namaSiswa").value;
+      const nilai = document.getElementById("nilai").value;
+
+      if (nama && nilai) {
+        dataNilai.push({ nama, nilai });
+        updateNilai();
+        nilaiForm.reset();
+      }
+    });
+
+    function updateNilai() {
+      tabelNilai.innerHTML = "";
+      let labels = [];
+      let nilaiData = [];
+      dataNilai.forEach(item => {
+        tabelNilai.innerHTML += `<tr><td>${item.nama}</td><td>${item.nilai}</td></tr>`;
+        labels.push(item.nama);
+        nilaiData.push(item.nilai);
+      });
+      chart.data.labels = labels;
+      chart.data.datasets[0].data = nilaiData;
+      chart.update();
+    }
+
+    // ====== Data Jadwal ======
+    const jadwalForm = document.getElementById("jadwalForm");
+    const tabelJadwal = document.querySelector("#tabelJadwal tbody");
+    let dataJadwal = [];
+
+    jadwalForm.addEventListener("submit", function(e) {
+      e.preventDefault();
+      const hari = document.getElementById("hari").value;
+      const jam = document.getElementById("jam").value;
+      const mapel = document.getElementById("mapel").value;
+
+      if (hari && jam && mapel) {
+        dataJadwal.push({ hari, jam, mapel });
+        updateJadwal();
+        jadwalForm.reset();
+      }
+    });
+
+    function updateJadwal() {
+      tabelJadwal.innerHTML = "";
+      dataJadwal.forEach(item => {
+        tabelJadwal.innerHTML += `<tr><td>${item.hari}</td><td>${item.jam}</td><td>${item.mapel}</td></tr>`;
+      });
+    }
+  </script>
+</body>
+</html>
